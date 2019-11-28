@@ -8,6 +8,8 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -22,14 +24,144 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type CreateFileResponse struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateFileResponse) Reset()         { *m = CreateFileResponse{} }
+func (m *CreateFileResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateFileResponse) ProtoMessage()    {}
+func (*CreateFileResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_453745cff914010e, []int{0}
+}
+
+func (m *CreateFileResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateFileResponse.Unmarshal(m, b)
+}
+func (m *CreateFileResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateFileResponse.Marshal(b, m, deterministic)
+}
+func (m *CreateFileResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateFileResponse.Merge(m, src)
+}
+func (m *CreateFileResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateFileResponse.Size(m)
+}
+func (m *CreateFileResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateFileResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateFileResponse proto.InternalMessageInfo
+
+func (m *CreateFileResponse) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+type SearchRequest struct {
+	Term                 string   `protobuf:"bytes,1,opt,name=term,proto3" json:"term,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SearchRequest) Reset()         { *m = SearchRequest{} }
+func (m *SearchRequest) String() string { return proto.CompactTextString(m) }
+func (*SearchRequest) ProtoMessage()    {}
+func (*SearchRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_453745cff914010e, []int{1}
+}
+
+func (m *SearchRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SearchRequest.Unmarshal(m, b)
+}
+func (m *SearchRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SearchRequest.Marshal(b, m, deterministic)
+}
+func (m *SearchRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SearchRequest.Merge(m, src)
+}
+func (m *SearchRequest) XXX_Size() int {
+	return xxx_messageInfo_SearchRequest.Size(m)
+}
+func (m *SearchRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SearchRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SearchRequest proto.InternalMessageInfo
+
+func (m *SearchRequest) GetTerm() string {
+	if m != nil {
+		return m.Term
+	}
+	return ""
+}
+
+type SearchResponse struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *SearchResponse) Reset()         { *m = SearchResponse{} }
+func (m *SearchResponse) String() string { return proto.CompactTextString(m) }
+func (*SearchResponse) ProtoMessage()    {}
+func (*SearchResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_453745cff914010e, []int{2}
+}
+
+func (m *SearchResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_SearchResponse.Unmarshal(m, b)
+}
+func (m *SearchResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_SearchResponse.Marshal(b, m, deterministic)
+}
+func (m *SearchResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SearchResponse.Merge(m, src)
+}
+func (m *SearchResponse) XXX_Size() int {
+	return xxx_messageInfo_SearchResponse.Size(m)
+}
+func (m *SearchResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SearchResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SearchResponse proto.InternalMessageInfo
+
+func (m *SearchResponse) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func init() {
+	proto.RegisterType((*CreateFileResponse)(nil), "search.CreateFileResponse")
+	proto.RegisterType((*SearchRequest)(nil), "search.SearchRequest")
+	proto.RegisterType((*SearchResponse)(nil), "search.SearchResponse")
+}
+
 func init() { proto.RegisterFile("search.proto", fileDescriptor_453745cff914010e) }
 
 var fileDescriptor_453745cff914010e = []byte{
-	// 51 bytes of a gzipped FileDescriptorProto
+	// 174 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x29, 0x4e, 0x4d, 0x2c,
-	0x4a, 0xce, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x83, 0xf0, 0x8c, 0x38, 0xb8, 0xa0,
-	0xac, 0x24, 0x36, 0xb0, 0x84, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0x9f, 0xe2, 0xee, 0x2e, 0x28,
-	0x00, 0x00, 0x00,
+	0x4a, 0xce, 0xd0, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x62, 0x83, 0xf0, 0xa4, 0xb8, 0xd2, 0x32,
+	0x73, 0x52, 0x21, 0x62, 0x4a, 0x2a, 0x5c, 0x42, 0xce, 0x45, 0xa9, 0x89, 0x25, 0xa9, 0x6e, 0x99,
+	0x39, 0xa9, 0x41, 0xa9, 0xc5, 0x05, 0xf9, 0x79, 0xc5, 0xa9, 0x42, 0x7c, 0x5c, 0x4c, 0x99, 0x29,
+	0x12, 0x8c, 0x0a, 0x8c, 0x1a, 0x9c, 0x41, 0x4c, 0x99, 0x29, 0x4a, 0xca, 0x5c, 0xbc, 0xc1, 0x60,
+	0xbd, 0x41, 0xa9, 0x85, 0xa5, 0xa9, 0xc5, 0x25, 0x42, 0x42, 0x5c, 0x2c, 0x25, 0xa9, 0x45, 0xb9,
+	0x50, 0x25, 0x60, 0xb6, 0x92, 0x02, 0x17, 0x1f, 0x4c, 0x11, 0x76, 0x63, 0x8c, 0xaa, 0xb9, 0xa0,
+	0x4e, 0x10, 0x32, 0xe3, 0xe2, 0x42, 0x58, 0x2b, 0xc4, 0xa5, 0x07, 0x76, 0x11, 0x88, 0x2d, 0x25,
+	0xa5, 0x07, 0x75, 0x33, 0xa6, 0xb3, 0x94, 0x18, 0x84, 0x2c, 0xb9, 0xd8, 0x20, 0x76, 0x08, 0x89,
+	0xc2, 0xd4, 0xa1, 0x38, 0x4c, 0x4a, 0x0c, 0x5d, 0x18, 0xa6, 0x35, 0x89, 0x0d, 0xec, 0x61, 0x63,
+	0x40, 0x00, 0x00, 0x00, 0xff, 0xff, 0xeb, 0x4f, 0x28, 0x13, 0x14, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -44,6 +176,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type SearchClient interface {
+	CreateFile(ctx context.Context, in *File, opts ...grpc.CallOption) (*CreateFileResponse, error)
+	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
 }
 
 type searchClient struct {
@@ -54,22 +188,94 @@ func NewSearchClient(cc *grpc.ClientConn) SearchClient {
 	return &searchClient{cc}
 }
 
+func (c *searchClient) CreateFile(ctx context.Context, in *File, opts ...grpc.CallOption) (*CreateFileResponse, error) {
+	out := new(CreateFileResponse)
+	err := c.cc.Invoke(ctx, "/search.search/CreateFile", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchClient) Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
+	out := new(SearchResponse)
+	err := c.cc.Invoke(ctx, "/search.search/Search", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SearchServer is the server API for Search service.
 type SearchServer interface {
+	CreateFile(context.Context, *File) (*CreateFileResponse, error)
+	Search(context.Context, *SearchRequest) (*SearchResponse, error)
 }
 
 // UnimplementedSearchServer can be embedded to have forward compatible implementations.
 type UnimplementedSearchServer struct {
 }
 
+func (*UnimplementedSearchServer) CreateFile(ctx context.Context, req *File) (*CreateFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateFile not implemented")
+}
+func (*UnimplementedSearchServer) Search(ctx context.Context, req *SearchRequest) (*SearchResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
+}
+
 func RegisterSearchServer(s *grpc.Server, srv SearchServer) {
 	s.RegisterService(&_Search_serviceDesc, srv)
+}
+
+func _Search_CreateFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(File)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServer).CreateFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/search.search/CreateFile",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServer).CreateFile(ctx, req.(*File))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Search_Search_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SearchRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServer).Search(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/search.search/Search",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServer).Search(ctx, req.(*SearchRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 var _Search_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "search.search",
 	HandlerType: (*SearchServer)(nil),
-	Methods:     []grpc.MethodDesc{},
-	Streams:     []grpc.StreamDesc{},
-	Metadata:    "search.proto",
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "CreateFile",
+			Handler:    _Search_CreateFile_Handler,
+		},
+		{
+			MethodName: "Search",
+			Handler:    _Search_Search_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "search.proto",
 }

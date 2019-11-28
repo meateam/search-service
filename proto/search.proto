@@ -1,5 +1,21 @@
 syntax = "proto3";
+import "file.proto";
 
 package search;
 
-service search {}
+service search {
+    rpc CreateFile(file.File) returns (CreateFileResponse) {}
+    rpc Search(SearchRequest) returns (SearchResponse) {}
+}
+
+message CreateFileResponse {
+    string id = 1;
+}
+
+message SearchRequest {
+    string term = 1;
+}
+
+message SearchResponse {
+    string id = 1;
+}

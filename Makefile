@@ -3,6 +3,7 @@ PROTOC=protoc
 
 # Binary names
 BINARY_NAME=search-service
+BRANCH := $(shell git branch | sed -n '/\* /s///p')
 
 all: clean deps fmt test build
 build: build-proto build-app 
@@ -18,8 +19,9 @@ deps:
 build-app:
 		CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags '-extldflags "-static"' -o $(BINARY_NAME) -v
 build-proto:
-		rm -f proto/*.pb.go
-		protoc -I proto/ proto/*.proto --go_out=plugins=grpc:./proto
+		rm -f proto/*.pb.go proto/file/file.proto
+		wget https://raw.githubusercontent.com/meateam/file-service/$(BRANCH)/proto/file/file.proto -P proto/file
+		protoc -I proto/ -I proto/file proto/*.proto --go_out=plugins=grpc:./proto
 
 .PHONY: fmt
 fmt:
