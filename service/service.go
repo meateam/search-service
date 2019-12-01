@@ -4,6 +4,7 @@ import (
 	"context"
 	"time"
 
+	pb "github.com/meateam/search-service/proto"
 	"github.com/sirupsen/logrus"
 )
 
@@ -29,4 +30,14 @@ func (s Service) HealthCheck() bool {
 // NewService creates a Service and returns it.
 func NewService(controller Controller, logger *logrus.Logger) Service {
 	return Service{controller: controller, logger: logger}
+}
+
+// CreateFile is the request handler for creating a file.
+func (s Service) CreateFile(ctx context.Context, req *pb.File) (*pb.CreateFileResponse, error) {
+	return nil, nil
+}
+
+// Search is the request handler for searching a file.
+func (s Service) Search(ctx context.Context, req *pb.SearchRequest) (*pb.SearchResponse, error) {
+	return nil, nil
 }
