@@ -34,10 +34,10 @@ func NewService(controller Controller, logger *logrus.Logger) Service {
 
 // CreateFile is the request handler for creating a file.
 func (s Service) CreateFile(ctx context.Context, req *pb.File) (*pb.CreateFileResponse, error) {
-	return nil, nil
+	return s.controller.CreateFile(ctx, req)
 }
 
 // Search is the request handler for searching a file.
 func (s Service) Search(ctx context.Context, req *pb.SearchRequest) (*pb.SearchResponse, error) {
-	return nil, nil
+	return s.controller.Search(ctx, req)
 }

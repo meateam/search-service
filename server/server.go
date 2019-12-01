@@ -7,12 +7,12 @@ import (
 	"strings"
 	"time"
 
-	es "github.com/elastic/go-elasticsearch/v7"
 	grpc_logrus "github.com/grpc-ecosystem/go-grpc-middleware/logging/logrus"
 	ilogger "github.com/meateam/elasticsearch-logger"
 	pb "github.com/meateam/search-service/proto"
 	"github.com/meateam/search-service/service"
 	"github.com/meateam/search-service/service/elasticsearch"
+	es "github.com/olivere/elastic/v7"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
@@ -26,9 +26,11 @@ const (
 	configElasticsearchURL      = "elasticsearch_url"
 	configElasticsearchUser     = "elasticsearch_user"
 	configElasticsearchPassword = "elasticsearch_password"
+	configElasticsearchIndex    = "elasticsearch_index"
 	configTLSSkipVerify         = "tls_skip_verify"
 	configHealthCheckInterval   = "health_check_interval"
 	configElasticAPMIgnoreURLS  = "elastic_apm_ignore_urls"
+	configElasticsearchSniff    = "elasticsearch_sniff"
 )
 
 func init() {
@@ -36,9 +38,11 @@ func init() {
 	viper.SetDefault(configElasticsearchURL, "http://localhost:9200")
 	viper.SetDefault(configElasticsearchUser, "")
 	viper.SetDefault(configElasticsearchPassword, "")
+	viper.SetDefault(configElasticsearchIndex, "files")
 	viper.SetDefault(configTLSSkipVerify, true)
 	viper.SetDefault(configHealthCheckInterval, 3)
 	viper.SetDefault(configElasticAPMIgnoreURLS, "/grpc.health.v1.Health/Check")
+	viper.SetDefault(configElasticsearchSniff, false)
 	viper.SetEnvPrefix(envPrefix)
 	viper.AutomaticEnv()
 }
@@ -128,23 +132,35 @@ func NewServer(logger *logrus.Logger) *SearchServer {
 }
 
 func initController() (service.Controller, error) {
-	elasticURL := viper.GetString(configElasticsearchURL)
-	cfg := es.Config{
-		Addresses: strings.Split(elasticURL, ","),
-		Username:  viper.GetString(configElasticsearchUser),
-		Password:  viper.GetString(configElasticsearchPassword),
-		Transport: &http.Transport{
-			MaxIdleConnsPerHost: 10,
-			TLSClientConfig: &tls.Config{
-				InsecureSkipVerify: viper.GetBool(configTLSSkipVerify), // ignore expired SSL certificates
-			},
-		},
-	}
-	controller, err := elasticsearch.NewController(cfg)
+	controller, err := elasticsearch.NewController(initESConfig())
 	if err != nil {
 		return nil, err
 	}
 	return controller, nil
+}
+
+func initESConfig() ([]es.ClientOptionFunc, string) {
+	elasticURL := viper.GetString(configElasticsearchURL)
+	transCfg := &http.Transport{
+		TLSClientConfig: &tls.Config{
+			InsecureSkipVerify: viper.GetBool(configTLSSkipVerify), // ignore expired SSL certificates
+		},
+	}
+	httpClient := &http.Client{Transport: transCfg}
+
+	elasticOpts := []es.ClientOptionFunc{
+		es.SetURL(strings.Split(elasticURL, ",")...),
+		es.SetSniff(viper.GetBool(configElasticsearchSniff)),
+		es.SetHttpClient(httpClient),
+	}
+
+	elasticUser := viper.GetString(configElasticsearchUser)
+	elasticPassword := viper.GetString(configElasticsearchPassword)
+	if elasticUser != "" && elasticPassword != "" {
+		elasticOpts = append(elasticOpts, es.SetBasicAuth(elasticUser, elasticPassword))
+	}
+
+	return elasticOpts, viper.GetString(configElasticsearchIndex)
 }
 
 // serverLoggerInterceptor configures the logger interceptor for the permission server.

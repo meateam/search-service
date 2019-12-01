@@ -35,5 +35,5 @@ message SearchRequest {
 }
 
 message SearchResponse {
-    string id = 1;
+    repeated string ids = 1;
 }
