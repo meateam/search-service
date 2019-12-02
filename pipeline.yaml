@@ -1,0 +1,6 @@
+repoName: "meateam/search-service"
+runTests: true
+testCommand: ""
+deployUponTestSuccess: true
+deployCommand:
+deployEnvironment:
