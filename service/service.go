@@ -8,7 +8,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// Service is a structure used for handling Permission Service grpc requests.
+// Service is a structure used for handling Search Service grpc requests.
 type Service struct {
 	logger     *logrus.Logger
 	controller Controller
@@ -40,4 +40,14 @@ func (s Service) CreateFile(ctx context.Context, req *pb.File) (*pb.CreateFileRe
 // Search is the request handler for searching a file.
 func (s Service) Search(ctx context.Context, req *pb.SearchRequest) (*pb.SearchResponse, error) {
 	return s.controller.Search(ctx, req)
+}
+
+// Delete is the request handler for deleting a file.
+func (s Service) Delete(ctx context.Context, req *pb.DeleteRequest) (*pb.DeleteResponse, error) {
+	return s.controller.Delete(ctx, req)
+}
+
+// Update is the request handler for updating a file.
+func (s Service) Update(ctx context.Context, req *pb.File) (*pb.UpdateResponse, error) {
+	return s.controller.Update(ctx, req)
 }

@@ -47,7 +47,7 @@ func init() {
 	viper.AutomaticEnv()
 }
 
-// SearchServer is a structure that holds the permission grpc server
+// SearchServer is a structure that holds the search grpc server
 // and its services and configuration.
 type SearchServer struct {
 	*grpc.Server
@@ -109,7 +109,7 @@ func NewServer(logger *logrus.Logger) *SearchServer {
 		logger.Fatalf("%v", err)
 	}
 
-	// Create a permission service and register it on the grpc server.
+	// Create a search service and register it on the grpc server.
 	searchService := service.NewService(controller, logger)
 	pb.RegisterSearchServer(grpcServer, searchService)
 
@@ -163,15 +163,13 @@ func initESConfig() ([]es.ClientOptionFunc, string) {
 	return elasticOpts, viper.GetString(configElasticsearchIndex)
 }
 
-// serverLoggerInterceptor configures the logger interceptor for the permission server.
+// serverLoggerInterceptor configures the logger interceptor for the search server.
 func serverLoggerInterceptor(logger *logrus.Logger) []grpc.ServerOption {
 	// Create new logrus entry for logger interceptor.
 	logrusEntry := logrus.NewEntry(logger)
 
 	ignorePayload := ilogger.IgnoreServerMethodsDecider(
-		append(
-			strings.Split(viper.GetString(configElasticAPMIgnoreURLS), ","),
-		)...,
+		strings.Split(viper.GetString(configElasticAPMIgnoreURLS), ",")...,
 	)
 
 	ignoreInitialRequest := ilogger.IgnoreServerMethodsDecider(

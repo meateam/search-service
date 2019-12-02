@@ -5,6 +5,20 @@ package search;
 service search {
     rpc CreateFile(File) returns (CreateFileResponse) {}
     rpc Search(SearchRequest) returns (SearchResponse) {}
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+    rpc Update(File) returns (UpdateResponse) {}
+}
+
+message UpdateResponse {
+    string id = 1;
+}
+
+message DeleteRequest {
+    string id = 1;
+}
+
+message DeleteResponse {
+    string id = 1;
 }
 
 message File {
@@ -25,7 +39,6 @@ message File {
     repeated File children = 13; 
 }
   
-
 message CreateFileResponse {
     string id = 1;
 }

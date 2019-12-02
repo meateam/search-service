@@ -24,6 +24,123 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
+type UpdateResponse struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *UpdateResponse) Reset()         { *m = UpdateResponse{} }
+func (m *UpdateResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateResponse) ProtoMessage()    {}
+func (*UpdateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_453745cff914010e, []int{0}
+}
+
+func (m *UpdateResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateResponse.Unmarshal(m, b)
+}
+func (m *UpdateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateResponse.Marshal(b, m, deterministic)
+}
+func (m *UpdateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateResponse.Merge(m, src)
+}
+func (m *UpdateResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateResponse.Size(m)
+}
+func (m *UpdateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateResponse proto.InternalMessageInfo
+
+func (m *UpdateResponse) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+type DeleteRequest struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteRequest) Reset()         { *m = DeleteRequest{} }
+func (m *DeleteRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteRequest) ProtoMessage()    {}
+func (*DeleteRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_453745cff914010e, []int{1}
+}
+
+func (m *DeleteRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteRequest.Unmarshal(m, b)
+}
+func (m *DeleteRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteRequest.Marshal(b, m, deterministic)
+}
+func (m *DeleteRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteRequest.Merge(m, src)
+}
+func (m *DeleteRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteRequest.Size(m)
+}
+func (m *DeleteRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteRequest proto.InternalMessageInfo
+
+func (m *DeleteRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+type DeleteResponse struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteResponse) Reset()         { *m = DeleteResponse{} }
+func (m *DeleteResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteResponse) ProtoMessage()    {}
+func (*DeleteResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_453745cff914010e, []int{2}
+}
+
+func (m *DeleteResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteResponse.Unmarshal(m, b)
+}
+func (m *DeleteResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteResponse.Marshal(b, m, deterministic)
+}
+func (m *DeleteResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteResponse.Merge(m, src)
+}
+func (m *DeleteResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteResponse.Size(m)
+}
+func (m *DeleteResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteResponse proto.InternalMessageInfo
+
+func (m *DeleteResponse) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
 type File struct {
 	Id          string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Key         string `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
@@ -49,7 +166,7 @@ func (m *File) Reset()         { *m = File{} }
 func (m *File) String() string { return proto.CompactTextString(m) }
 func (*File) ProtoMessage()    {}
 func (*File) Descriptor() ([]byte, []int) {
-	return fileDescriptor_453745cff914010e, []int{0}
+	return fileDescriptor_453745cff914010e, []int{3}
 }
 
 func (m *File) XXX_Unmarshal(b []byte) error {
@@ -203,7 +320,7 @@ func (m *CreateFileResponse) Reset()         { *m = CreateFileResponse{} }
 func (m *CreateFileResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateFileResponse) ProtoMessage()    {}
 func (*CreateFileResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_453745cff914010e, []int{1}
+	return fileDescriptor_453745cff914010e, []int{4}
 }
 
 func (m *CreateFileResponse) XXX_Unmarshal(b []byte) error {
@@ -242,7 +359,7 @@ func (m *SearchRequest) Reset()         { *m = SearchRequest{} }
 func (m *SearchRequest) String() string { return proto.CompactTextString(m) }
 func (*SearchRequest) ProtoMessage()    {}
 func (*SearchRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_453745cff914010e, []int{2}
+	return fileDescriptor_453745cff914010e, []int{5}
 }
 
 func (m *SearchRequest) XXX_Unmarshal(b []byte) error {
@@ -281,7 +398,7 @@ func (m *SearchResponse) Reset()         { *m = SearchResponse{} }
 func (m *SearchResponse) String() string { return proto.CompactTextString(m) }
 func (*SearchResponse) ProtoMessage()    {}
 func (*SearchResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_453745cff914010e, []int{3}
+	return fileDescriptor_453745cff914010e, []int{6}
 }
 
 func (m *SearchResponse) XXX_Unmarshal(b []byte) error {
@@ -310,6 +427,9 @@ func (m *SearchResponse) GetIds() []string {
 }
 
 func init() {
+	proto.RegisterType((*UpdateResponse)(nil), "search.UpdateResponse")
+	proto.RegisterType((*DeleteRequest)(nil), "search.DeleteRequest")
+	proto.RegisterType((*DeleteResponse)(nil), "search.DeleteResponse")
 	proto.RegisterType((*File)(nil), "search.File")
 	proto.RegisterType((*CreateFileResponse)(nil), "search.CreateFileResponse")
 	proto.RegisterType((*SearchRequest)(nil), "search.SearchRequest")
@@ -319,30 +439,34 @@ func init() {
 func init() { proto.RegisterFile("search.proto", fileDescriptor_453745cff914010e) }
 
 var fileDescriptor_453745cff914010e = []byte{
-	// 360 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x64, 0x52, 0xbd, 0x6e, 0xe2, 0x40,
-	0x10, 0xc6, 0x36, 0x67, 0x60, 0x30, 0x08, 0x8d, 0x74, 0x68, 0x85, 0xae, 0xb0, 0x7c, 0x57, 0xb8,
-	0xa2, 0xe0, 0x9a, 0xa4, 0xcc, 0x8f, 0x22, 0xa8, 0x90, 0x9c, 0x27, 0x30, 0xde, 0x89, 0xd8, 0x00,
-	0xb6, 0xb3, 0xbb, 0x28, 0x22, 0x52, 0xde, 0x3b, 0x65, 0xb4, 0x6b, 0x1b, 0x02, 0x74, 0xdf, 0x1f,
-	0xf3, 0xcd, 0x32, 0x86, 0x40, 0x51, 0x2a, 0xb3, 0xf5, 0xb4, 0x94, 0x85, 0x2e, 0xd0, 0xaf, 0x58,
-	0xf4, 0xe5, 0x42, 0xfb, 0x49, 0x6c, 0x09, 0x87, 0xe0, 0x0a, 0xce, 0x9c, 0xd0, 0x89, 0x7b, 0x89,
-	0x2b, 0x38, 0x8e, 0xc0, 0xdb, 0xd0, 0x81, 0xb9, 0x56, 0x30, 0x10, 0x11, 0xda, 0x79, 0xba, 0x23,
-	0xe6, 0x59, 0xc9, 0x62, 0xa3, 0xe9, 0x43, 0x49, 0xac, 0x5d, 0x69, 0x06, 0x63, 0x08, 0x7d, 0x4e,
-	0x2a, 0x93, 0xa2, 0xd4, 0xa2, 0xc8, 0xd9, 0x2f, 0x6b, 0xfd, 0x94, 0x90, 0x41, 0xa7, 0x78, 0xcf,
-	0x49, 0x2e, 0x1e, 0x99, 0x6f, 0xdd, 0x86, 0x9a, 0x79, 0x4a, 0x7c, 0x10, 0xeb, 0x84, 0x4e, 0xec,
-	0x25, 0x16, 0x23, 0x03, 0xbf, 0x4c, 0x25, 0xe5, 0x9a, 0x75, 0x4d, 0x78, 0xde, 0x4a, 0x6a, 0x8e,
-	0x33, 0x08, 0x2a, 0xb4, 0x5c, 0xbd, 0x52, 0xa6, 0x59, 0x2f, 0x74, 0xe2, 0xfe, 0x2c, 0x98, 0xd6,
-	0x2f, 0x35, 0xef, 0x9a, 0xb7, 0x92, 0xb3, 0x0c, 0x8e, 0xc1, 0x5f, 0xed, 0xb3, 0x0d, 0x69, 0x06,
-	0xb6, 0xba, 0x66, 0xf8, 0x07, 0x7a, 0x99, 0xa4, 0x54, 0x13, 0xbf, 0xd3, 0xac, 0x6f, 0xeb, 0x4f,
-	0x82, 0x71, 0xf7, 0x25, 0xaf, 0xdd, 0xa0, 0x72, 0x8f, 0x02, 0xc6, 0xd0, 0xcd, 0xd6, 0x62, 0xcb,
-	0x25, 0xe5, 0x6c, 0x10, 0x7a, 0x97, 0x3b, 0x24, 0x47, 0xf7, 0x1e, 0xa0, 0xfb, 0x22, 0xb6, 0xb4,
-	0x94, 0x0b, 0x1e, 0xfd, 0x03, 0x7c, 0xb0, 0x05, 0x36, 0x43, 0xaa, 0x2c, 0x72, 0x75, 0x75, 0x87,
-	0xe8, 0x2f, 0x0c, 0x9e, 0xed, 0xa8, 0x84, 0xde, 0xf6, 0xa4, 0xb4, 0xfd, 0xcb, 0x49, 0xee, 0xea,
-	0x88, 0xc5, 0x51, 0x04, 0xc3, 0x26, 0x54, 0x8f, 0x19, 0x81, 0x27, 0xb8, 0x62, 0x4e, 0xe8, 0x99,
-	0xf3, 0x09, 0xae, 0x66, 0x9f, 0x50, 0xdf, 0x1c, 0x6f, 0x00, 0x4e, 0xc5, 0x78, 0xb6, 0xea, 0x64,
-	0xd2, 0xb0, 0xeb, 0xd5, 0xa2, 0x16, 0xde, 0x82, 0x5f, 0xf5, 0xe0, 0xef, 0x26, 0x77, 0xb6, 0xdc,
-	0x64, 0x7c, 0x29, 0x37, 0x3f, 0x5d, 0xf9, 0xf6, 0xbb, 0xfb, 0xff, 0x1d, 0x00, 0x00, 0xff, 0xff,
-	0xe8, 0xab, 0x3f, 0xf3, 0x87, 0x02, 0x00, 0x00,
+	// 420 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x53, 0x4d, 0x6f, 0xd3, 0x40,
+	0x10, 0xb5, 0xe3, 0xe0, 0x26, 0x13, 0xc7, 0xaa, 0x46, 0xa2, 0x5a, 0x45, 0x48, 0xac, 0x16, 0x0e,
+	0x3e, 0x55, 0x28, 0x5c, 0xe0, 0x08, 0x54, 0xa8, 0x3d, 0x55, 0x32, 0xe2, 0x07, 0x38, 0xde, 0x41,
+	0x5d, 0xea, 0xda, 0x66, 0x77, 0x23, 0x54, 0x7e, 0x32, 0xbf, 0x80, 0x23, 0xda, 0xb5, 0x1d, 0xd7,
+	0x89, 0x7a, 0x7b, 0xf3, 0xde, 0x9b, 0x0f, 0x7b, 0x66, 0x21, 0x31, 0x54, 0xe8, 0xf2, 0xee, 0xb2,
+	0xd5, 0x8d, 0x6d, 0x30, 0xee, 0x22, 0xc1, 0x21, 0xfd, 0xde, 0xca, 0xc2, 0x52, 0x4e, 0xa6, 0x6d,
+	0x6a, 0x43, 0x98, 0xc2, 0x4c, 0x49, 0x16, 0xf2, 0x30, 0x5b, 0xe6, 0x33, 0x25, 0xc5, 0x6b, 0x58,
+	0x5f, 0x51, 0x45, 0xce, 0xf1, 0x6b, 0x4f, 0xc6, 0x9e, 0x18, 0x38, 0xa4, 0x83, 0xe1, 0x99, 0x12,
+	0xff, 0x66, 0x30, 0xff, 0xaa, 0xaa, 0x13, 0x01, 0xcf, 0x21, 0xba, 0xa7, 0x47, 0x36, 0xf3, 0x84,
+	0x83, 0x88, 0x30, 0xaf, 0x8b, 0x07, 0x62, 0x91, 0xa7, 0x3c, 0x76, 0x9c, 0x7d, 0x6c, 0x89, 0xcd,
+	0x3b, 0xce, 0x61, 0xe4, 0xb0, 0x92, 0x64, 0x4a, 0xad, 0x5a, 0xab, 0x9a, 0x9a, 0xbd, 0xf0, 0xd2,
+	0x53, 0x0a, 0x19, 0x9c, 0x35, 0xbf, 0x6b, 0xd2, 0x37, 0x57, 0x2c, 0xf6, 0xea, 0x10, 0xba, 0x7a,
+	0x46, 0xfd, 0x21, 0x76, 0xc6, 0xc3, 0x2c, 0xca, 0x3d, 0x46, 0x06, 0x71, 0x5b, 0x68, 0xaa, 0x2d,
+	0x5b, 0x38, 0xf3, 0x75, 0x90, 0xf7, 0x31, 0x6e, 0x21, 0xe9, 0xd0, 0xed, 0xee, 0x27, 0x95, 0x96,
+	0x2d, 0x79, 0x98, 0xad, 0xb6, 0xc9, 0x65, 0xff, 0x3b, 0xdd, 0x77, 0x5d, 0x07, 0xf9, 0xc4, 0x83,
+	0x17, 0x10, 0xef, 0xf6, 0xe5, 0x3d, 0x59, 0x06, 0xbe, 0x75, 0x1f, 0xe1, 0x2b, 0x58, 0x96, 0x9a,
+	0x0a, 0x4b, 0xf2, 0x93, 0x65, 0x2b, 0xdf, 0x7e, 0x24, 0x9c, 0xba, 0xf7, 0xbb, 0x70, 0x6a, 0xd2,
+	0xa9, 0x07, 0x02, 0x33, 0x58, 0x94, 0x77, 0xaa, 0x92, 0x9a, 0x6a, 0xb6, 0xe6, 0xd1, 0xf1, 0x0c,
+	0xf9, 0x41, 0xfd, 0x0c, 0xb0, 0xf8, 0xa1, 0x2a, 0xba, 0xd5, 0x37, 0x52, 0xbc, 0x05, 0xfc, 0xe2,
+	0x1b, 0x78, 0xcf, 0x73, 0x0b, 0x7a, 0x03, 0xeb, 0x6f, 0xbe, 0xd4, 0xb0, 0x63, 0xf7, 0xcb, 0x49,
+	0x3f, 0xf4, 0x16, 0x8f, 0x85, 0x80, 0x74, 0x30, 0xf5, 0x65, 0xce, 0x21, 0x52, 0xd2, 0xb0, 0x90,
+	0x47, 0x6e, 0x7d, 0x4a, 0x9a, 0xed, 0xdf, 0x10, 0xfa, 0xcb, 0xc2, 0x0f, 0x00, 0x63, 0x67, 0x9c,
+	0xcc, 0xba, 0xd9, 0x0c, 0xd1, 0xe9, 0x6c, 0x22, 0xc0, 0x8f, 0x10, 0x77, 0x8d, 0xf0, 0xe5, 0xe0,
+	0x9b, 0x4c, 0xb7, 0xb9, 0x38, 0xa6, 0x9f, 0xa6, 0x76, 0xb7, 0x38, 0xa6, 0x4e, 0x8e, 0x77, 0x4c,
+	0x9d, 0x9e, 0xac, 0x08, 0xf0, 0x1d, 0xc4, 0xdd, 0x4b, 0x38, 0x9a, 0xf5, 0x90, 0x31, 0x7d, 0x27,
+	0x22, 0xd8, 0xc5, 0xfe, 0x29, 0xbd, 0xff, 0x1f, 0x00, 0x00, 0xff, 0xff, 0x5b, 0x21, 0x06, 0xd8,
+	0x5a, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -359,6 +483,8 @@ const _ = grpc.SupportPackageIsVersion4
 type SearchClient interface {
 	CreateFile(ctx context.Context, in *File, opts ...grpc.CallOption) (*CreateFileResponse, error)
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
+	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
+	Update(ctx context.Context, in *File, opts ...grpc.CallOption) (*UpdateResponse, error)
 }
 
 type searchClient struct {
@@ -387,10 +513,30 @@ func (c *searchClient) Search(ctx context.Context, in *SearchRequest, opts ...gr
 	return out, nil
 }
 
+func (c *searchClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+	out := new(DeleteResponse)
+	err := c.cc.Invoke(ctx, "/search.search/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *searchClient) Update(ctx context.Context, in *File, opts ...grpc.CallOption) (*UpdateResponse, error) {
+	out := new(UpdateResponse)
+	err := c.cc.Invoke(ctx, "/search.search/Update", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SearchServer is the server API for Search service.
 type SearchServer interface {
 	CreateFile(context.Context, *File) (*CreateFileResponse, error)
 	Search(context.Context, *SearchRequest) (*SearchResponse, error)
+	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
+	Update(context.Context, *File) (*UpdateResponse, error)
 }
 
 // UnimplementedSearchServer can be embedded to have forward compatible implementations.
@@ -402,6 +548,12 @@ func (*UnimplementedSearchServer) CreateFile(ctx context.Context, req *File) (*C
 }
 func (*UnimplementedSearchServer) Search(ctx context.Context, req *SearchRequest) (*SearchResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
+}
+func (*UnimplementedSearchServer) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (*UnimplementedSearchServer) Update(ctx context.Context, req *File) (*UpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 
 func RegisterSearchServer(s *grpc.Server, srv SearchServer) {
@@ -444,6 +596,42 @@ func _Search_Search_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Search_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/search.search/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServer).Delete(ctx, req.(*DeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Search_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(File)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SearchServer).Update(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/search.search/Update",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SearchServer).Update(ctx, req.(*File))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Search_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "search.search",
 	HandlerType: (*SearchServer)(nil),
@@ -455,6 +643,14 @@ var _Search_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Search",
 			Handler:    _Search_Search_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _Search_Delete_Handler,
+		},
+		{
+			MethodName: "Update",
+			Handler:    _Search_Update_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
