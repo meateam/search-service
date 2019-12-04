@@ -2,6 +2,7 @@ package elasticsearch
 
 import (
 	"context"
+	"fmt"
 
 	pb "github.com/meateam/search-service/proto"
 	es "github.com/olivere/elastic/v7"
@@ -18,6 +19,22 @@ func newStore(cfg []es.ClientOptionFunc, index string) (*Store, error) {
 	if err != nil {
 		return nil, err
 	}
+	// Check if the index exists
+	exists, err := client.IndexExists(index).Do(context.Background())
+	if err != nil {
+		return nil, err
+	}
+
+	if !exists {
+		createIndex, err := client.CreateIndex(index).BodyString(IndexSettings).Do(context.Background())
+		if err != nil {
+			return nil, err
+		}
+
+		if !createIndex.Acknowledged {
+			return nil, fmt.Errorf("failed creating index: %s", index)
+		}
+	}
 
 	return &Store{client: client, index: index}, nil
 }
@@ -29,7 +46,13 @@ func (s Store) HealthCheck(ctx context.Context) (bool, error) {
 		return false, err
 	}
 
-	return true, nil
+	// Check if the index exists
+	exists, err := s.client.IndexExists(s.index).Do(context.Background())
+	if err != nil {
+		return false, err
+	}
+
+	return exists, nil
 }
 
 // GetAll finds all files that matches the query and Index,

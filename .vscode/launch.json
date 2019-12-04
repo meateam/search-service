@@ -11,7 +11,7 @@
 			"mode": "debug",
 			"program": "${workspaceFolder}",
 			"env": {
-				"PS_PORT": "8080",
+				"SS_PORT": "8088",
 				"HOST_NAME": "search-service",
 				"SS_ELASTIC_APM_IGNORE_URLS": "/grpc.health.v1.Health/Check",
 				"SS_ELASTICSEARCH_URL": "http://localhost:9200",
@@ -23,7 +23,8 @@
 				"ELASTIC_APM_ENVIRONMENT": "development",
 				"ELASTIC_APM_ACTIVE": "true",
 				"ELASTIC_APM_CAPTURE_BODY": "all",
-				"ELASTIC_APM_METRICS_INTERVAL": "10s"
+				"ELASTIC_APM_METRICS_INTERVAL": "10s",
+				"SS_ELASTICSEARCH_INDEX": "files"
 			}
 		},
     ]
