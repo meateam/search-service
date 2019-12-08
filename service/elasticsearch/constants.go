@@ -115,7 +115,7 @@ const IndexSettings string = `
 			"text": {
 			  "type": "text",
 			  "analyzer": "nameAnalyzer",
-              "search_analyzer": "standard"
+			  "search_analyzer": "standard"
 			}
 		  }
 		},
