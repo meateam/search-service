@@ -114,7 +114,8 @@ const IndexSettings string = `
 			},
 			"text": {
 			  "type": "text",
-			  "analyzer": "nameAnalyzer"
+			  "analyzer": "nameAnalyzer",
+			  "search_analyzer": "standard"
 			}
 		  }
 		},
