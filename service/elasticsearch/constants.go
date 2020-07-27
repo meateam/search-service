@@ -42,7 +42,7 @@ const IndexSettings string = `
 			"language":   "possessive_english"
 		  },
 		  "words_splitter": {
-			"type": "word_delimiter",
+			"type": "word_delimiter_graph",
 			"preserve_original": "true"
 		  }
 		},
