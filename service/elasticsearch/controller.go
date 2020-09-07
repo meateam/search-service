@@ -3,6 +3,7 @@ package elasticsearch
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	pb "github.com/meateam/search-service/proto"
 	es "github.com/olivere/elastic/v7"
@@ -31,7 +32,8 @@ func (c Controller) HealthCheck(ctx context.Context) (bool, error) {
 
 // CreateFile creates a file in store and returns its unique ID.
 func (c Controller) CreateFile(ctx context.Context, req *pb.File) (*pb.CreateFileResponse, error) {
-	id, err := c.store.Create(ctx, req)
+	file := formatFile(req)
+	id, err := c.store.Create(ctx, file)
 	if err != nil {
 		return nil, err
 	}
@@ -72,10 +74,25 @@ func (c Controller) Update(ctx context.Context, req *pb.File) (*pb.UpdateRespons
 		return nil, fmt.Errorf("file id is required")
 	}
 
-	res, err := c.store.Update(ctx, req)
+	file := formatFile(req)
+
+	res, err := c.store.Update(ctx, file)
 	if err != nil {
 		return nil, err
 	}
 
 	return &pb.UpdateResponse{Id: res}, nil
+}
+
+// formatFile formats a givven file so there won't be elastic indexing errors.
+func formatFile(file *pb.File) *pb.File {
+	fileName := formatFileName(file.GetName())
+	file.Name = fileName
+	return file
+}
+
+// formatFileName formats a givven fileName to prevent elasticsearch startoffset errors.
+func formatFileName(name string) string {
+	fileName := strings.ReplaceAll(name, "_", " ")
+	return fileName
 }
