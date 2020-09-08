@@ -84,14 +84,14 @@ func (c Controller) Update(ctx context.Context, req *pb.File) (*pb.UpdateRespons
 	return &pb.UpdateResponse{Id: res}, nil
 }
 
-// formatFile formats a givven file so there won't be elastic indexing errors.
+// formatFile formats a given file so there won't be elastic indexing errors.
 func formatFile(file *pb.File) *pb.File {
 	fileName := formatFileName(file.GetName())
 	file.Name = fileName
 	return file
 }
 
-// formatFileName formats a givven fileName to prevent elasticsearch startoffset errors.
+// formatFileName formats a given fileName to prevent elasticsearch startoffset errors.
 func formatFileName(name string) string {
 	fileName := strings.ReplaceAll(name, "_", " ")
 	return fileName
