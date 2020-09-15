@@ -51,11 +51,11 @@ pipeline {
         }
       }  
       stage('build dockerfile of system only for master and develop and push them to acr') {
-        when {
-          anyOf {
-            branch 'master'; branch 'develop'
-          }
-        }
+        // when {
+        //   anyOf {
+        //     branch 'master'; branch 'develop'
+        //   }
+        // }
         steps {
          script{
           //  if(env.GIT_BRANCH == 'master') {
