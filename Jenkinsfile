@@ -57,7 +57,7 @@ pipeline {
           sh "docker build -t unittest -f test.Dockerfile ." 
         }  
       }
-      run image of unit test
+      // run image of unit test
       stage('run unit tests') {   
         steps {
           sh "docker run unittest"  
