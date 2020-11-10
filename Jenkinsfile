@@ -15,46 +15,46 @@ pipeline {
           }
         }
       }
-        stage('build dockerfile of tests') {
-            steps {
-              sh "docker build -t unittest -f test.Dockerfile ." 
-            }  
-          }
-        stage('run unit tests') {   
-            steps {
-                sh "docker run unittest"   
-            }
-        post {
-          always {
-            discordSend description: '**service**: '+ env.GIT_REPO_NAME + '\n **Build**:' + " " + env.BUILD_NUMBER + '\n **Branch**:' + " " + env.GIT_BRANCH + '\n **Status**:' + " " +  currentBuild.result + '\n \n \n **Commit ID**:'+ " " + env.GIT_SHORT_COMMIT + '\n **commit massage**:' + " " + env.GIT_COMMIT_MSG + '\n **commit email**:' + " " + env.GIT_COMMITTER_EMAIL, footer: '', image: '', link: 'http://40.87.136.81/blue/organizations/jenkins/'+env.JOB_NAME+'/detail/'+env.JOB_NAME+'/'+env.BUILD_NUMBER+'/pipeline', result: currentBuild.result, thumbnail: '', title: ' link to result', webhookURL: 'https://discord.com/api/webhooks/735056754051645451/jYad6fXNkPMnD7mopiCJx2qLNoXZnvNUaYj5tYztcAIWQCoVl6m2tE2kmdhrFwoAASbv'   
-          }
-         }
-        }
-          stage('login to azure container registry') {
-            steps{  
-              withCredentials([usernamePassword(credentialsId:'Drive_ACR',usernameVariable: 'USER', passwordVariable: 'PASS')]) {
-                sh "docker login  drivehub.azurecr.io -u ${USER} -p ${PASS}"
-              }
-            }
+      stage('build dockerfile of tests') {
+          steps {
+            sh "docker build -t unittest -f test.Dockerfile ."
           }  
-          stage('build dockerfile of system only for master and develop and push them to acr') {
-            when {
-              anyOf {
-                 branch 'master'; branch 'develop'
-              }
+        }
+      stage('run unit tests') {   
+          steps {
+              sh "docker run unittest"
+          }
+      post {
+        always {
+          discordSend description: '**service**: '+ env.GIT_REPO_NAME + '\n **Build**:' + " " + env.BUILD_NUMBER + '\n **Branch**:' + " " + env.GIT_BRANCH + '\n **Status**:' + " " +  currentBuild.result + '\n \n \n **Commit ID**:'+ " " + env.GIT_SHORT_COMMIT + '\n **commit massage**:' + " " + env.GIT_COMMIT_MSG + '\n **commit email**:' + " " + env.GIT_COMMITTER_EMAIL, footer: '', image: '', link: 'http://40.87.136.81/blue/organizations/jenkins/'+env.JOB_NAME+'/detail/'+env.JOB_NAME+'/'+env.BUILD_NUMBER+'/pipeline', result: currentBuild.result, thumbnail: '', title: ' link to result', webhookURL: 'https://discord.com/api/webhooks/735056754051645451/jYad6fXNkPMnD7mopiCJx2qLNoXZnvNUaYj5tYztcAIWQCoVl6m2tE2kmdhrFwoAASbv'   
+        }
+        }
+      }
+      stage('login to azure container registry') {
+        steps{  
+          withCredentials([usernamePassword(credentialsId:'DRIVE_ACR',usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+            sh "docker login  drivehub.azurecr.io -u ${USER} -p ${PASS}"
+          }
+        }
+      }  
+      stage('build dockerfile of system only for master and develop and push them to acr') {
+        when {
+          anyOf {
+              branch 'master'; branch 'develop'
+          }
+        }
+        steps {
+          script{
+            if(env.GIT_BRANCH == 'master') {
+              sh "docker build -t  drivehub.azurecr.io/${env.GIT_REPO_NAME}/master:${env.GIT_SHORT_COMMIT} ."
+              sh "docker push  drivehub.azurecr.io/${env.GIT_REPO_NAME}/master:${env.GIT_SHORT_COMMIT}"
             }
-            steps {
-              script{
-                if(env.GIT_BRANCH == 'master') {
-                  sh "docker build -t  drivehub.azurecr.io/${env.GIT_REPO_NAME}/master:${env.GIT_SHORT_COMMIT} ."
-                  sh "docker push  drivehub.azurecr.io/${env.GIT_REPO_NAME}/master:${env.GIT_SHORT_COMMIT}"
-                }
-                else if(env.GIT_BRANCH == 'develop') {
-                  sh "docker build -t  drivehub.azurecr.io/${env.GIT_REPO_NAME}/develop ."
-                  sh "docker push  drivehub.azurecr.io/${env.GIT_REPO_NAME}/develop"  
-                }
-              } 
+            else if(env.GIT_BRANCH == 'develop') {
+              sh "docker build -t  drivehub.azurecr.io/${env.GIT_REPO_NAME}/develop ."
+              sh "docker push  drivehub.azurecr.io/${env.GIT_REPO_NAME}/develop"  
             }
-          }      
+          } 
+        }
+      }      
     }   
 }
