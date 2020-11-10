@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## Refactor
+
+- upgrade docker-compose to v3 and use env_file instead of enviorment.
+
 ## [1.3.1] - 2020-09-08
 
 ## [v2.0.0] - 2020-10-28
