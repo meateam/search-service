@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [v2.0.1] - 2020-10-28
+## [v2.0.1] - 2021-02-11
 
 ### Changed
 - ISSUE([99](https://github.com/meateam/drive-project/issues/99)): update pkg, delete unused pkg and update deps
@@ -26,4 +26,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [unreleased]: https://github.com/meateam/search-service/compare/v1.3.1...HEAD
 [1.3.1]: https://github.com/meateam/search-service/compare/v1.3...v1.3.1
 [v2.0.0]: https://github.com/meateam/search-service/compare/v1.3.1...v2.0.0
-[v2.0.1]: https://github.com/meateam/search-service/compare/v1.3.1...v2.0.1
+[v2.0.1]: https://github.com/meateam/search-service/compare/v2.0.0...v2.0.1
